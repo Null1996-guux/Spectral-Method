@@ -19,7 +19,7 @@ def l_gauss(N, m, x):
             L[1, 0], L[1, 1] = x, 1
             for i in range(2, N + 1):
                 for j in range(0, i+1):
-                    if j > m: break     # 打断, 否则当 m < N 时会超出数组索引
+                    if j > m: break     
                     L[i, j] = \
                     ( j * (2 * i - 1) * L[i-1, j-1] \
                           + x * L[i-1, j] * (2 * i - 1) \
@@ -34,9 +34,9 @@ def find_zpts(N, m = 0, reseps = 1e-10):
     lbd = -1
     while find_count < N - m:
         rbd = lbd + H
-        if l_gauss(N, m, lbd) * l_gauss(N, m, rbd) > 0: # 判断, 当前区间上没有零点时直接增加左短点并进入下次循环
+        if l_gauss(N, m, lbd) * l_gauss(N, m, rbd) > 0: # Is there zero point in the interval
             pass
-        else: # 判断当前区间上有零点， 利用牛顿法在区间 (lbd, rbd) 上搜索零点, 
+        else: # get zero points through Newton Method, 
             x_cur = (lbd + rbd)/2 
             x_las = rbd
             while np.abs(x_cur - x_las) > reseps:

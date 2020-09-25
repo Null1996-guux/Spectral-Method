@@ -1,0 +1,2 @@
+# Spectral-Method
+happy programming
